@@ -13,8 +13,8 @@ main,.by{width:100%;max-width:calc(var(--w)*2.1 + .6rem + 2px);margin:0 auto}
 main{flex:1}
 p{margin:0}
 .corner{display:flex;align-items:flex-end;gap:calc(var(--w)*.3)}
-#head{width:var(--w);padding:.3rem;display:grid;gap:.3rem;background:light-dark(oklch(.78 var(--gold,0 0)),oklch(.22 var(--jian,0 0)));border:1px solid light-dark(oklch(.6 var(--gold,0 0)),oklch(.3 var(--jian,0 0)));transition:background-color .5s ease,border-color .5s ease}
-#head svg{display:block;width:100%;background:oklch(.16 var(--jian,0 0))}
+#head{width:var(--w);padding:.3rem;display:grid;gap:.3rem;background:light-dark(oklch(.78 var(--gold,0 0)),oklch(.22 var(--jian,0 0)));border:1px solid light-dark(oklch(.6 var(--gold,0 0)),oklch(.3 var(--jian,0 0)));transition:background-color .5s,border-color .5s}
+#head svg{width:100%;background:oklch(.16 var(--jian,0 0))}
 #head g g{clip-path:url(#dots)}
 .dont{color:oklch(.29 var(--amber,0 0))}
 .walk{color:oklch(.29 var(--ding,0 0))}
@@ -22,11 +22,11 @@ p{margin:0}
 [data-lit=walk] .walk{color:oklch(.88 var(--ding,0 0))}
 [data-lit=dont] .dont>g,[data-lit=walk] .walk>g{filter:url(#glow)}
 .post{width:calc(var(--w)*.8);display:grid;gap:calc(var(--w)*.12)}
-#sign{border:2px solid var(--ink);padding:.4em .3em;font:calc(var(--w)*.09)/1.3 var(--sans);letter-spacing:.06em;text-align:center}
-button{background:none;border:0;padding:0;cursor:pointer}
+#sign{border:2px solid;padding:.4em .3em;font:calc(var(--w)*.09)/1.3 var(--sans);letter-spacing:.06em;text-align:center}
+button{background:none;border:0;padding:0;color:inherit;cursor:pointer}
 button:focus-visible{outline:1px solid var(--rule);outline-offset:4px}
 #push,#lamp{aspect-ratio:1;border-radius:50%}
-#push{width:calc(var(--w)*.5);justify-self:center;border:2px solid var(--ink);background:var(--rule);box-shadow:inset 0 0 0 calc(var(--w)*.04) var(--paper);display:grid;place-items:center}
+#push{width:calc(var(--w)*.5);justify-self:center;border:2px solid;background:var(--rule);box-shadow:inset 0 0 0 calc(var(--w)*.04) var(--paper);display:grid;place-items:center}
 #push:active{transform:scale(.94)}
 #lamp{width:26%;background:oklch(.29 var(--amber,0 0));transition:none}
 #lamp.on{background:var(--lit);box-shadow:0 0 .35em var(--lit)}
@@ -51,18 +51,13 @@ a{color:var(--amber-accent);text-underline-offset:.15em}
 <filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation=".9"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
 <clipPath id="dots"><path id="leds" d="M0 0h99v99H0z"/></clipPath>
 </defs>
-<g><g fill="currentColor"><path d="M42 6h3v3H42zM42 9h6v33H42zM33 12h6v30H33zM51 12h6v30H51z
-M24 18h3v3H24zM24 21h6v21H24zM72 39h6v3H72zM24 42h33v12H24zM69 42h6v3H69zM66 45h9v3H66z
-M63 48h9v6H63zM24 54h45v3H24zM21 57h48v3H21zM21 60h45v3H21zM24 63h39v3H24zM24 66h36v3H24z
-M27 69h30v3H27zM27 72h27v21H27z"/></g></g>
+<g><g fill="currentColor"><path d="M42 6h3v3h3v33h3v-30h6v42h6v-6h3v-3h3v-3h3v-3h6v3h-3v6h-3v6h-3v6
+h-3v3h-3v3h-3v3h-3v3h-3v21h-27v-24h-3v-6h-3v-6h3v-39h3v3h3v21h3v-30h6v30h3"/></g></g>
 </svg><span class="sr">DONT WALK</span>
 <svg class="walk" viewBox="0 0 99 99">
-<g><g fill="currentColor"><path d="M51 6h6v3H51zM48 9h12v6H48zM48 15h9v3H48zM42 21h12v3H42z
-M36 24h18v3H36zM30 27h27v3H30zM27 30h30v3H27zM27 33h6v9H27zM36 33h21v3H36zM36 36h24v3H36z
-M36 39h27v3H36zM27 42h3v9H27zM36 42h15v3H36zM57 42h12v3H57zM33 45h18v9H33zM63 45h9v3H63z
-M36 54h15v3H36zM33 57h21v3H33zM33 60h24v3H33zM33 63h9v6H33zM45 63h12v3H45zM48 66h9v3H48z
-M30 69h9v9H30zM51 69h9v9H51zM30 78h6v3H30zM54 78h6v3H54zM27 81h9v3H27zM54 81h9v6H54z
-M27 84h6v6H27zM57 87h6v3H57zM30 90h3v3H30z"/></g></g>
+<g><g fill="currentColor"><path d="M51 6h6v3h3v6h-3v3h-9v-9h3M42 21h12v6h3v9h3v3h3v3h6v3h3v3h-9v-3h-6
+v-3h-6v15h3v3h3v9h3v12h3v9h-6v-3h-3v-9h-3v-9h-3v-3h-3v-3h-3v6h-3v9h-3v6h-3v9h-3v-3h-3v-9h3v-12h3
+v-12h3v-3h-3v-9h3v-12h-3v9h-3v9h-3v-21h3v-3h6v-3h6"/></g></g>
 </svg><span class="sr">WALK</span>
 </div>
 <div class="post">

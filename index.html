@@ -82,7 +82,7 @@ v-12h3v-3h-3v-9h3v-12h-3v9h-3v9h-3v-21h3v-3h6v-3h6"/></g></g>
 // The corner keeps the world's time, so everyone, anywhere, sees the same light at the
 // same moment. Each cycle is L seconds: DONT WALK until the traffic lets the WALK come,
 // somewhere from lo to hi seconds in; then WALK for 7; then DONT WALK, flashing, for 11.
-const{floor,max,random}=Math,$=i=>document.getElementById(i),
+const{ceil,floor,max,min,random}=Math,$=i=>document.getElementById(i),
   L=45,lo=4,hi=27,WALK=7,FLASH=11,
   head=$("head"),lamp=$("lamp"),s=$("s"),
   calm=matchMedia("(prefers-reduced-motion: reduce)").matches,
@@ -105,8 +105,9 @@ const walkAt=k=>k in mine?mine[k]:lo+(hi-lo)*traffic(k);
 $("push").onclick=()=>{
   const t=now(),k=floor(t/L),into=t%L,next=into<walkAt(k)?k:k+1,from=next==k?max(into,lo):lo;
   mine[next]=from+random()*(hi-from);
-  call=next;lamp.className="on";say("Wait.")};
+  call=next;lamp.className="on";say("Wait.");draw()};
 
+let tick;
 const draw=()=>{
   const t=now(),k=floor(t/L),into=t%L,a=walkAt(k),
     p=into<a?"":into<a+WALK?"walk":into<a+WALK+FLASH?"flash":"",
@@ -114,7 +115,13 @@ const draw=()=>{
   if(call!=null&&(k>call||k==call&&into>=a)){call=null;lamp.className="";if(p=="walk")say("Walk sign is on.")}
   if(lit!=head.dataset.lit)head.dataset.lit=lit;
   if(p!=was){was=p;head.setAttribute("aria-label",p=="walk"?"WALK":p?"DONT WALK, flashing":"DONT WALK")}
-  requestAnimationFrame(draw)};
+  // nothing changes before the next of these: the walk, its flashing, the hand again, the
+  // next cycle, and while it flashes, each half second; it sleeps until then, to the
+  // millisecond after (woken early, it finds nothing yet, and sleeps the rest)
+  const next=min(...[a,a+WALK,a+WALK+FLASH,L].filter(b=>b>into),p=="flash"&&!calm?(floor(t*2)+1)/2-L*k:L);
+  clearTimeout(tick);tick=setTimeout(draw,ceil((next-into)*1e3))};
+// a page come back to, after its timers were slowed, looks again at once
+document.onvisibilitychange=draw;
 draw();
 
 // theme: the system's, until the visitor turns it; nothing is kept

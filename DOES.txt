@@ -1,0 +1,32 @@
+What doesthisdoanything.click does. A golf pass must keep every line true.
+
+ 1. One corner, seen whole on the first screen: a pedestrian signal, and beside it
+    the sign PUSH BUTTON FOR WALK SIGNAL over its push button.
+ 2. The signal is two lenses of LEDs, 33 by 33: an upraised hand above, in amber,
+    and a walking person below, in Ding white. The symbols are the US standard ones
+    (MUTCD), sampled in whole LEDs. Unlit, each shows as a faint grid of its LEDs;
+    lit, it blooms a little. Without script the symbols are solid.
+ 3. Everyone, anywhere, sees the same corner at the same moment: the signal keeps
+    the world's clock. Each cycle is 45 seconds: the hand, until the walking person
+    comes, somewhere from 4 to 27 seconds in, as the traffic has it; the walking
+    person for 7 seconds; then the hand, flashing once a second, for 11. With
+    reduced motion the hand stays lit instead of flashing.
+ 4. A press (click, Space or Enter) lights the button's lamp until this corner's
+    next walking person, and changes when that walking person comes, within what
+    the traffic allows. The button gives under the press; the lamp answers within
+    a frame. Nothing about a press is kept.
+ 5. A screen reader hears "Wait." at every press, and "Walk sign is on." when the
+    walking person answers a press. The signal is labelled DONT WALK, WALK, or
+    DONT WALK, flashing. A text-only reader sees DONT WALK and WALK, the sign, and
+    the label.
+ 6. The label gives the page's own size, read live, and one line: "Wait." The
+    title (the tab) is "Push button for walk signal."; a link's preview adds
+    "Wait." The console gives a Latin word, and what it means.
+ 7. Colours come from the house tokens: amber, and gold for the signal's housing;
+    without the tokens every colour falls to black, white or a grey. The housing is
+    gold by day and black by night; the lights and the lamp keep their own colours
+    in both themes. Dark mode follows the system until the theme button ("dark" or
+    "light", beside the label) turns it for the visit; nothing is kept. A change of
+    theme fades over half a second.
+ 8. The 404 is the sign, with no button under it.
+ 9. The favicon is the button from the front, in amber, lighter on dark tab bars.
